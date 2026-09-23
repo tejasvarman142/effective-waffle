@@ -1,0 +1,299 @@
+// --- Core Setup ---
+window.onload = function() {
+  // Double‑click desktop icons to open windows
+  document.querySelectorAll('.icon').forEach(icon => {
+    icon.addEventListener('dblclick', () => {
+      openWindow(icon.id);
+    });
+  });
+
+  // Start button toggle
+  const startButton = document.querySelector('#startbalk .startbutton');
+  const startMenu = document.getElementById('startmenu');
+
+  startButton.addEventListener('click', () => {
+    startMenu.style.display = (startMenu.style.display === "block") ? "none" : "block";
+  });
+
+  // Close Start menu if clicking outside
+  document.addEventListener('click', (e) => {
+    if (!startMenu.contains(e.target) && !startButton.contains(e.target)) {
+      startMenu.style.display = "none";
+    }
+  });
+
+  // Hook Start menu items to open windows
+  document.querySelectorAll('#startmenu .menu-items li').forEach(item => {
+    item.addEventListener('click', () => {
+      openWindow(item.className); // use className as window ID
+      startMenu.style.display = "none"; // auto close menu
+    });
+  });
+
+  // Live clock in taskbar
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // Init VFS
+  renderFolder("Desktop", "desktop");
+  renderFolder("Documents", "documents-window");
+  enableDrop("documents-window", "Documents");
+  enableTaskbarDrop("startbalk-items");
+
+  // Load personalization settings
+  loadPersonalization();
+};
+
+// --- Clock ---
+function updateClock() {
+  const clock = document.querySelector('#startbalk .clock');
+  if (clock) {
+    const now = new Date();
+    clock.textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+  }
+}
+
+// --- Taskbar Management ---
+function addToTaskbar(appId, win) {
+  const taskbar = document.getElementById("startbalk-items");
+  let item = document.getElementById(appId + "-task");
+  if (!item) {
+    item = document.createElement("li");
+    item.id = appId + "-task";
+    item.innerHTML = `<div class="inner">${appId}</div>`;
+    taskbar.appendChild(item);
+
+    item.addEventListener("click", () => {
+      if (win.classList.contains("window-hidden")) {
+        win.classList.remove("window-hidden");
+        setActiveTask(appId);
+      } else {
+        win.classList.add("window-hidden");
+        item.classList.remove("active");
+      }
+    });
+  }
+  setActiveTask(appId);
+}
+
+function setActiveTask(appId) {
+  document.querySelectorAll("#startbalk-items li").forEach(li => li.classList.remove("active"));
+  const item = document.getElementById(appId + "-task");
+  if (item) item.classList.add("active");
+}
+
+// --- Window Management ---
+function openWindow(appId) {
+  if (appId === "personalization") {
+    openPersonalization();
+    return;
+  }
+
+  let win = document.getElementById(appId + "-window");
+  if (!win) {
+    win = document.createElement("div");
+    win.className = "window window-open";
+    win.id = appId + "-window";
+
+    win.innerHTML = `
+      <div class="header">
+        <span>${appId}</span>
+        <div class="window-actions">
+          <div class="minimize"></div>
+          <div class="maximize"></div>
+          <div class="close"></div>
+        </div>
+      </div>
+      <div class="content-container">
+        <div class="content">
+          <p>Welcome to ${appId}!</p>
+        </div>
+      </div>
+    `;
+
+    document.getElementById("desktop").appendChild(win);
+    makeDraggable(win);
+
+    win.querySelector(".close").addEventListener("click", () => {
+      win.remove();
+      const taskItem = document.getElementById(appId + "-task");
+      if (taskItem) taskItem.remove();
+    });
+
+    win.querySelector(".maximize").addEventListener("click", () => {
+      win.classList.toggle("window-maximized");
+    });
+
+    win.querySelector(".minimize").addEventListener("click", () => {
+      win.classList.add("window-hidden");
+      const taskItem = document.getElementById(appId + "-task");
+      if (taskItem) taskItem.classList.remove("active");
+    });
+  }
+  addToTaskbar(appId, win);
+}
+
+// --- Draggable Windows ---
+function makeDraggable(el) {
+  const header = el.querySelector(".header");
+  let offsetX, offsetY, dragging = false;
+
+  header.addEventListener("mousedown", e => {
+    dragging = true;
+    offsetX = e.clientX - el.offsetLeft;
+    offsetY = e.clientY - el.offsetTop;
+    document.addEventListener("mousemove", move);
+    document.addEventListener("mouseup", stop);
+  });
+
+  function move(e) {
+    if (dragging && !el.classList.contains("window-maximized")) {
+      el.style.left = (e.clientX - offsetX) + "px";
+      el.style.top = (e.clientY - offsetY) + "px";
+    }
+  }
+
+  function stop() {
+    dragging = false;
+    document.removeEventListener("mousemove", move);
+    document.removeEventListener("mouseup", stop);
+  }
+}
+
+// --- Virtual File System ---
+const vfs = {
+  "Desktop": {
+    "Internet Explorer.lnk": { type: "shortcut", target: "ie" },
+    "My Computer.lnk": { type: "shortcut", target: "mycomputer" },
+    "Personalization.lnk": { type: "shortcut", target: "personalization" }
+  },
+  "Documents": {
+    "notes.txt": { type: "file", content: "Hello world" }
+  }
+};
+
+function renderFolder(folderName, containerId) {
+  const container = document.getElementById(containerId);
+  if (!container || !vfs[folderName]) return;
+  container.innerHTML = "";
+
+  Object.keys(vfs[folderName]).forEach(fileName => {
+    const file = vfs[folderName][fileName];
+    const icon = document.createElement("div");
+    icon.className = "icon";
+    icon.textContent = fileName;
+    icon.draggable = true;
+
+    icon.addEventListener("dragstart", e => {
+      e.dataTransfer.setData("text/plain", JSON.stringify({ folder: folderName, file: fileName }));
+    });
+
+    icon.addEventListener("dblclick", () => {
+      if (file.type === "shortcut") {
+        openWindow(file.target);
+      } else {
+        alert(`Opening ${fileName}:\n${file.content || "Empty file"}`);
+      }
+    });
+
+    container.appendChild(icon);
+  });
+}
+
+function enableDrop(containerId, folderName) {
+  const container = document.getElementById(containerId);
+  if (!container) return;
+
+  container.addEventListener("dragover", e => e.preventDefault());
+  container.addEventListener("drop", e => {
+    e.preventDefault();
+    let raw = e.dataTransfer.getData("text/plain");
+    if (!raw) return;
+
+    let data;
+    try { data = JSON.parse(raw); } catch { return; }
+    if (!data.folder || !data.file) return;
+
+    const fileObj = vfs[data.folder][data.file];
+    vfs[folderName][data.file] = fileObj;
+    delete vfs[data.folder][data.file];
+
+    renderFolder(data.folder, data.folder.toLowerCase());
+    renderFolder(folderName, containerId);
+  });
+}
+
+function enableTaskbarDrop(taskbarId) {
+  const taskbar = document.getElementById(taskbarId);
+  if (!taskbar) return;
+
+  taskbar.addEventListener("dragover", e => e.preventDefault());
+  taskbar.addEventListener("drop", e => {
+    e.preventDefault();
+    let raw = e.dataTransfer.getData("text/plain");
+    if (!raw) return;
+
+    let data;
+    try { data = JSON.parse(raw); } catch { return; }
+    const fileObj = vfs[data.folder][data.file];
+    if (fileObj.type === "shortcut") {
+      const btn = document.createElement("li");
+      btn.className = "taskbar-item";
+      btn.textContent = data.file.replace(".lnk", "");
+      btn.addEventListener("click", () => openWindow(fileObj.target));
+      taskbar.appendChild(btn);
+    }
+  });
+}
+
+// --- Error Window ---
+function showError(message) {
+  const errorWin = document.createElement("div");
+  errorWin.className = "window error-window";
+  errorWin.innerHTML = `
+    <div class="header">
+      <span>Error</span>
+      <div class="window-actions"><div class="close"></div></div>
+    </div>
+    <div class="content-container">
+      <div class="content error-content">
+        <img src="https://www.rw-designer.com/icon-view/32624.png" class="error-icon">
+        <div class="error-message">${message}</div>
+      </div>
+      <div class="error-buttons"><button class="ok-btn">OK</button></div>
+    </div>
+  `;
+  document.getElementById("desktop").appendChild(errorWin);
+  makeDraggable(errorWin);
+
+  errorWin.querySelector(".close").onclick = () => errorWin.remove();
+  errorWin.querySelector(".ok-btn").onclick = () => errorWin.remove();
+}
+
+// --- Hook runtime errors ---
+window.addEventListener("error", (event) => {
+  if (event.error) {
+    showError(event.error.toString()); // full message like "Uncaught ReferenceError: doSomething is not defined"
+  } else {
+    showError(event.message); // fallback
+  }
+});
+
+// --- Hook console.error ---
+const originalConsoleError = console.error;
+console.error = function(...args) {
+  const msg = args.map(a => a instanceof Error ? a.toString() : String(a)).join(" ");
+  showError(msg);
+  originalConsoleError.apply(console, args);
+};
+
+   // -- The screen stretch for the desktop --
+    function updateStretch() {
+      const osContainer = document.getElementById("os-container");
+      const scaleX = window.innerWidth / 1024;
+      const scaleY = window.innerHeight / 768;
+      osContainer.style.transform = `scale(${scaleX}, ${scaleY})`;
+    }
+
+    window.addEventListener("resize", updateStretch);
+    updateStretch();

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>HTTP 404 Not Found</title>
+  <link rel="stylesheet" type="text/css" href="ErrorPageTemplate.css">
+  <script>
+    function expandCollapse(id, show) {
+      document.getElementById(id).style.display = show ? 'block' : 'none';
+    }
+  </script>
+</head>
+
+<body onload="expandCollapse('infoBlockID', false)">
+  <table cellpadding="0" cellspacing="0" border="0">
+    <!-- Error title -->
+    <tr>
+      <td id="infoIconAlign" width="60" valign="top" rowspan="2">
+        <!-- Droplet sprite replaces IE info icon -->
+        <img src="dropletSprites.png" id="infoIcon" alt="Info icon">
+      </td>
+      <td valign="middle">
+        <h1>The webpage cannot be found</h1>
+      </td>
+    </tr>
+
+    <tr>
+      <td class="errorCodeAndDivider">
+        HTTP 404
+        <div class="divider"></div>
+      </td>
+    </tr>
+
+    <!-- Causes -->
+    <tr>
+      <td></td>
+      <td>
+        <h3>Most likely causes:</h3>
+        <ul>
+          <li>There might be a typing error in the address.</li>
+          <li>If you clicked on a link, it may be out of date.</li>
+        </ul>
+      </td>
+    </tr>
+
+    <!-- What you can try -->
+    <tr>
+      <td></td>
+      <td><h2>What you can try:</h2></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td>
+        <h4><img src="bullet.png" class="actionIcon">Retype the address.</h4>
+        <h4><img src="bullet.png" class="actionIcon">Go back to the previous page.</h4>
+        <h4><img src="bullet.png" class="actionIcon">Go to the main site and look for the information you want.</h4>
+        <h4>
+          <a href="#" onclick="expandCollapse('infoBlockID', true);return false;">
+            <img src="down.png" class="actionIcon" alt="More information">
+          </a> More information
+        </h4>
+        <div id="infoBlockID" class="infoBlock">
+          <p>This error (HTTP 404 Not Found) means that Internet Explorer was able to connect to the website, but the page you wanted was not found. It’s possible that the webpage is temporarily unavailable or has been moved.</p>
+          <p>For more information about HTTP errors, see Help.</p>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,1443 @@
+/* ==========================================================================
+   1. Core Layout & Base Resets
+   ========================================================================== */
+
+html, body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {	
+    font-family: cursive, Arial, sans-serif;
+    font-size: 16px;
+    color: #393939;
+    background: #000;
+}
+
+h1 {
+    font-size: 34px;
+    font-weight: normal;
+    line-height: 28px;
+    margin: 0 0 10px 0;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: normal;
+    line-height: 24px;
+    margin: 0 0 10px 0;
+}
+
+input, select {
+    margin: 0;
+}
+
+button {
+    background: #393939;
+    color: #f8f8f8;
+    border: solid 1px #393939;
+    border-radius: 3px;
+    padding: 1px 10px;
+    height: 24px;
+    cursor: pointer;
+}
+
+input[type=text],
+input[type=password] {
+    border: solid 1px #393939;
+    border-radius: 3px;
+    padding: 0 4px;
+    height: 22px;
+    line-height: 22px;
+    background: #f8f8f8;
+}
+
+/* Loaders & Control Buttons */
+.loader {
+    width: 32px;
+    height: 32px;
+    display: block;
+    background: url(/Content/Images/ajax-loader-white.gif) no-repeat left top; 
+}
+
+.add-button {
+    background: url(/Content/Images/PNG_96/icon_13.png) no-repeat left top;
+}
+
+.remove-button {
+    background: url(/Content/Images/PNG_96/icon_26.png) no-repeat left top;
+}
+
+.edit-button {
+    background: url(/Content/Images/PNG_96/icon_25.png) no-repeat left top;
+}
+
+.add-button,
+.remove-button,
+.edit-button {
+    background-size: cover;
+    width: 35px;
+    height: 35px;
+    margin: 0 0 0 10px;
+    float: left;
+    text-indent: -999px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Form Fields */
+.form-field {
+    margin-bottom: 2px;
+    opacity: 1;
+}
+
+.form-field label {
+    width: 125px;
+    display: inline-block;
+    line-height: 24px;
+}
+
+.form-field input {
+    width: 150px;
+    display: inline-block;
+}
+
+.form-field input[type="checkbox"] {
+    width: auto;
+}
+
+/* ==========================================================================
+   2. Wallpaper Settings
+   ========================================================================== */
+
+#wallpaper,
+#wallpaper li {
+    min-width: 100%;
+    min-height: 100%;    
+    position: fixed;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background: #fff no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: block;
+}
+
+#wallpaper .arches-national-park {
+    background-image: url("Images/Wallpapers/hd/arches_national_park.jpg");
+}
+
+#wallpaper .blue-mountains {
+    background-image: url("Images/Wallpapers/hd/blue_mountains.jpg");
+}
+
+#wallpaper .justis-valley-switzerland {
+    background-image: url('bg2.jpg');
+}
+
+#wallpaper .moraine-lake-national-park {
+    background-image: url("Images/Wallpapers/hd/moraine_lake_banff_national_park.jpg");
+}
+
+#wallpaper .rocky-mountain-national-park {
+    background-image: url("Images/Wallpapers/hd/rocky_mountain_national_park.jpg");
+}
+
+/* ==========================================================================
+   3. Navigation & Content Panels
+   ========================================================================== */
+
+nav {
+    float: left;
+    height: 100%;
+    background: #393939;
+    width: 200px;
+    position: fixed;
+}
+
+nav img {
+    padding: 10px 20px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+nav a.nav-item {
+    line-height: 30px;
+    font-size: 20px;
+    width: 160px;
+    display: block;
+    margin: 0;
+    padding: 10px 20px;
+    color: #aaa;
+    border-bottom: solid 2px #aaa;
+    text-decoration: none;
+    position: relative;
+}
+
+nav a.nav-item span {
+    width: 0; 
+    height: 0;
+    position: absolute;
+    right: -20px;
+    top: 0;
+    border-left: 20px solid #393939;
+    border-top: 25px solid transparent;
+    border-bottom: 25px solid transparent;
+}
+
+nav a.active {
+    background: #0550AD;
+    color: #f8f8f8;
+}
+
+nav a.active span {
+    border-left-color: #0550AD;
+}
+
+nav a.nav-item:hover {
+    background: #4B79C5;
+    color: #f8f8f8;
+}
+
+nav a.nav-item:hover span {
+    border-left-color: #4B79C5;
+}
+
+#main {
+    margin-left: 200px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.content {
+    background-color: #f3f3f3;
+    background-color: rgba(243,243,243,0.9);
+    position: relative;
+    margin: 30px 0 0 30px;
+    float: left;
+    padding: 30px;
+}
+
+article.content {
+    width: 760px;
+}
+
+article.content-login {
+    position: absolute;
+    margin: -150px 0 0 -200px;
+    width: 340px;
+    height: 240px;
+    left: 50%;
+    top: 50%;
+}
+
+article.content-login form {
+    margin-bottom: 15px;
+}
+
+article.content-login button {
+    margin-left: 200px;
+    width: 90px;
+}
+
+.validation-summary-errors {
+    border: solid 1px #E5A840;
+    background: #EFE88B;
+    color: #C47900;
+    padding: 5px 10px;
+}
+
+.validation-summary-errors ul,
+.validation-summary-errors li,
+.contactpersonen,
+.visitekaartjes {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.contactpersonen li,
+.visitekaartjes li {
+    float: left;
+    width: 250px;
+    height: 160px;
+    list-style-type: none;
+}
+
+.visitekaartjes li {
+    height: 100px;
+    opacity: 0.75;
+}
+
+.visitekaartjes li .check-print {
+    clear: both;
+    float: right;
+}
+
+.visitekaartjes li.content-printable,
+.visitekaartjes li.visitekaartje-toevoegen {
+    opacity: 1;
+}
+
+.contactpersonen .contactpersoon-toevoegen a,
+.visitekaartjes .visitekaartje-toevoegen a {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.contactpersonen .contactpersoon-toevoegen img,
+.visitekaartjes .visitekaartje-toevoegen img {
+    margin: 58px auto;
+    display: block;
+}
+
+.visitekaartjes .visitekaartje-toevoegen img {
+    margin: 28px auto;
+}
+
+.contactpersonen li .toolbar,
+.visitekaartjes li .toolbar {
+    position: absolute;
+    right: -11px;
+    top: -13px;
+    display: none;
+}
+
+.contactpersonen li:hover .toolbar,
+.visitekaartjes li:hover .toolbar {
+    display: block;
+}
+
+/* Content Upload Component */
+.content-upload {
+    float: none;
+    margin: 30px;
+    overflow: hidden;
+}
+
+.content-upload .kruimelpad {
+    float: left;
+    margin-bottom: 10px;
+}
+
+.content-upload .album-toevoegen,
+#image-upload {
+    float: right;
+}
+
+.content-upload .jaren,
+.content-upload .albums {
+    clear: both;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content-upload .jaren li,
+.content-upload .albums li,
+.content-upload .fotos li {
+    position: relative;
+}
+
+.content-upload .jaren a,
+.content-upload .albums a {
+    color: #393939;
+    display: block;
+    text-decoration: none;
+    padding: 5px 15px;
+}
+
+.content-upload .jaren li:nth-child(odd) a,
+.content-upload .albums li:nth-child(odd) a {
+    background-color: #9CC8E5;
+    border: solid 1px #9CC8E5;
+    border-radius: 3px;
+    color: #393939;
+    display: block;
+}
+
+.content-upload .albums .loader {
+    position: absolute;
+    right: 2px;
+    top: 0;
+    display: none;
+}
+
+.content-upload .albums li:nth-child(odd) .loader {
+    background-image: url(/Content/Images/ajax-loader-blue.gif);
+}
+
+.content-upload .remove-button {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+    width: 25px;
+    height: 25px;
+    display: block;
+    background-size: cover;
+}
+
+.content-upload li:hover .remove-button {
+    display: block;
+}
+
+.content-upload .fotos {
+    clear: both;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    overflow: hidden;
+    margin-right: -15px;
+}
+
+.content-upload .fotos li {
+    float: left;
+    border: solid 1px #393939;
+    border-radius: 3px;
+    padding: 218px 10px 5px 10px;
+    width: 277px;
+    background: #393939;
+    margin: 0 15px 15px 0;
+}
+
+.content-upload .fotos li .remove-button {
+    right: 3px;
+    top: 3px;
+    display: none;
+    z-index: 2;
+}
+
+.content-upload .fotos li:hover .remove-button {
+    display: block;
+}
+
+.content-upload .fotos li img,
+.content-upload .fotos li .uploading {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    z-index: 1;
+}
+
+.content-upload .fotos li .uploading {
+    background: #f8f8f8;
+    color: #393939;
+    width: 91px;
+    padding: 0 93px;
+    line-height: 208px;
+    font-size: 32px;
+    margin-bottom: 5px;
+    text-align: right;
+}
+
+.content-upload .fotos li .uploading-error {
+    color: #dd0000;
+}
+
+.content-upload .fotos li img {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.content-upload .fotos li .details {
+    padding: 1px;
+    line-height: 18px;
+    font-size: 12px;
+    overflow: hidden;
+    color: #f8f8f8;
+}
+
+.content-upload .fotos li .details .bestandsnaam {
+    height: 18px;
+    overflow: hidden;
+}
+
+.content-upload .fotos li .datum-toegevoegd {
+    float: left;
+}
+
+.content-upload .fotos li .grootte {
+    float: right;
+}
+
+/* ==========================================================================
+   4. Windows Shell Engine Structure
+   ========================================================================== */
+
+#windows {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: Segoe UI, arial;
+    font-size: 12px;
+    color: #000;
+}
+
+#windows ul,
+#windows li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#windows input {
+    font-family: Segoe UI, arial;
+    font-size: 12px;
+    line-height: 18px;
+}
+
+#windows *:not(textarea):not(input) {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#windows *:focus {
+    outline: 0;
+}
+
+#windows li {
+    cursor: default;
+}
+
+/* Taskbar Structure */
+#startbalk {
+    position: fixed;   /* instead of relative */
+    bottom: 0;         /* anchor to bottom */
+    left: 0;
+    right: 0;
+    border-top: solid 1px #5A521D;
+    color: #fff;
+    line-height: 28px;
+    z-index: 900;
+}
+
+#startbalk > .inner {
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    height: 29px;
+    border-top: 1px solid rgba(0, 0, 0, .5);
+    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, .4);
+    background-image: repeating-linear-gradient(65deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.1) 42%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.1) 55%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0) 75%, rgba(255, 255, 255, 0.1) 90%);
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: 1001;
+}
+
+#startbalk-items {
+    position: absolute;
+    left: 20px;
+    top: -18px;
+    right: 300px;
+    height: 30px;
+    overflow: hidden;
+}
+
+#startbalk-items li {
+    float: left;
+    border: solid 1px #0C0E06;
+    border-radius: 3px;
+    margin-right: 2px;
+}
+
+#startbalk-items li .inner {
+    border: solid 1px #F4F6EC;
+    border-right-color: #CEC37D;
+    border-bottom-color: #CEC37D;
+    border-radius: 2px;
+    padding: 0 7px 0 1px;
+    width: 148px;
+    line-height: 24px;
+    height: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#startbalk-items li .system-icon {
+    margin-top: -1px;
+}
+
+#startbalk-items li.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+#startbalk .startbutton-container {
+    position: absolute;
+    left: 8px;
+    bottom: 0;
+}
+
+#startbalk .startbutton {
+    background: url("https://tejasvarman142.neocities.org/starticon.png");
+    width: 55px;
+    height: 55px;
+    position: absolute;
+    bottom: -12px;   /* anchor to bottom of taskbar */
+    left: -12px;
+}
+
+#startbalk .startbutton-container .startbutton-hover {
+    display: none;
+    width: 38px;
+    height: 38px;
+    background: url("https://tejasvarman142.neocities.org/starticon3.png");
+}
+
+/* Start Menu Structure */
+#startmenu {
+    width: 411px;
+    height: 430px;
+    position: absolute;
+    left: -8px; 
+    bottom: 30px;
+    display: none;
+    background: url(Images/windows7/startmenu.png);
+}
+
+#startmenu .menu-items {
+    position: absolute;
+    left: 10px;
+    top: 154px;
+    padding: 1px;
+    margin: 0;
+}
+
+#startmenu .menu-items-pinned {
+    top: 36px;
+}
+
+#startmenu .menu-items li {
+    width: 196px;
+    padding: 0 10px 0 40px;
+    line-height: 36px;
+    margin: 0 0 2px 0;
+    list-style-type: none;
+    color: #393939;
+    background: url(Images/windows7/startmenu-item.png) no-repeat -999px top;
+    position: relative;
+}
+
+#startmenu .menu-items li .show-subitems {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 27px;
+    height: 36px;
+}
+
+#startmenu .menu-items li.has-subitems {
+    background-position: left bottom;
+}
+
+#startmenu .menu-items li:hover {
+    background-position: left -36px;
+}
+
+#startmenu .menu-items li.has-subitems:hover {
+    background-position: left -108px;
+}
+
+#startmenu .menu-items li.has-subitems.hover {
+    background-position: left top;
+}
+
+#startmenu .menu-items li.arrow-hover:hover {
+    background-position: left -144px;
+}
+
+#startmenu .menu-items li.hover.arrow-hover:hover {
+    background-position: left -72px;
+}
+
+#startmenu .menu-items li .icon {
+    position: absolute;
+    left: 1px;
+    top: 0;
+    width: 34px;
+    height: 34px;
+    background: url(Images/windows7/startmenu_icons.png) no-repeat left top;
+}
+
+#startmenu .menu-items li.outlook .icon {
+    background-position: left -38px;
+}
+
+#startmenu .menu-items li.sql .icon {
+    background-position: left -76px;
+}
+
+#startmenu .menu-items li.skype .icon {
+    background-position: left -114px;
+}
+
+#startmenu .menu-items li.word .icon {
+    background-position: left -152px;
+}
+
+#startmenu .menu-items li.excel .icon {
+    background-position: left -190px;
+}
+
+#startmenu .menu-items li.notepad .icon {
+    background-position: left -228px;
+}
+
+#startmenu .menu-items li.calc .icon {
+    background-position: left -266px;
+}
+
+#startmenu .right {
+    position: absolute;
+    right: 10px;
+    top: 70px;
+    padding: 1px;
+    margin: 0;
+}
+
+#startmenu .right li {
+    width: 118px;
+    padding: 0 10px;
+    line-height: 33px;
+    margin: 0;
+    list-style-type: none;
+    text-indent: -999px;
+}
+
+#startmenu .right li:hover {
+    background: url(Images/windows7/startmenu-button.png);
+}
+
+#startmenu .right li.last {
+    margin-bottom: 5px;
+}
+
+#startmenu .right li.last-group {
+    margin-bottom: 2px;
+}
+
+#startmenu .afsluiten {
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
+    width: 94px;
+    display: block;
+    height: 22px;
+    cursor: default;
+}
+
+#startmenu .afsluiten:hover {
+    background: url(Images/windows7/afsluiten.png);
+}
+
+/* System Tray & Icons */
+#startbalk .system-icons {
+    position: absolute;
+    right: 18px;
+    bottom: 0;
+}
+
+#startbalk .system-icons .clock {
+    width: 62px;
+    text-align: center;
+    float: left;
+    cursor: default;
+}
+
+#startbalk .system-icon {
+    width: 24px;
+    height: 28px;
+    position: relative;
+    float: left;
+    background: url('system_icons.png');
+}
+
+#desktop .Verkenner .system-icon {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    float: left;
+    background: url('system_icons.png') no-repeat -2px -5px;
+}
+
+#startbalk .system-icon-asp-net { background-position: -24px 0; }
+#startbalk .system-icon-neorouter { background-position: -48px 0; }
+#startbalk .system-icon-flash { background-position: -72px 0; }
+#startbalk .system-icon-outlook { background-position: -96px 0; }
+#startbalk .system-icon-skype { background-position: -120px 0; }
+#startbalk .system-icon-dts { background-position: -144px 0; }
+#startbalk .system-icon-pc-issues { background-position: -168px 0; }
+#startbalk .system-icon-battery { background-position: -192px 0; }
+#startbalk .system-icon-network { background-position: -216px 0; }
+#startbalk .system-icon-volume { background-position: -240px 0; }
+#startbalk .system-icon-computer { background-position: -264px 0; }
+
+#desktop .Verkenner .system-icon-computer { background-position: -266px -5px; }
+
+#startbalk .system-icon-diskwindows { background-position: -288px 0; }
+
+#desktop .Verkenner .system-icon-diskwindows { background-position: -290px -5px; }
+
+#startbalk .system-icon-disk { background-position: -312px 0; }
+
+#desktop .Verkenner .system-icon-disk { background-position: -314px -5px; }
+
+#startbalk .system-icon-directory { background-position: -336px 0; }
+
+#desktop .Verkenner .system-icon-directory { background-position: -338px -5px; }
+
+#startbalk .system-icons .system-icon-hover {
+    width: 24px;
+    height: 28px;
+    background: url('system_icon_hover.png');
+    position: absolute;
+    display: none;
+}
+
+#startbalk .show-desktop {
+    position: absolute;
+    right: 0;
+    bottom: -2px;
+    width: 15px;
+    height: 30px;
+    background: url("https://tejasvarman142.neocities.org/show desktop button.png");
+}
+
+#startbalk .show-desktop:hover {
+    background-position: right top;
+}
+
+/* ==========================================================================
+   5. Desktop & Aero Glass Window Engine
+   ========================================================================== */
+
+#desktop {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 30px;
+    overflow: hidden;
+}
+
+/* Sticky Note Widget */
+#desktop .sticky-note {
+    background: url(Images/windows7/sticky-note.png) repeat-x;
+    background-size: 100% 100%;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    width: 415px;
+    min-width: 160px;
+    min-height: 70px;
+    padding: 40px 10px 10px;
+    height: 208px;
+    -webkit-box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    font-family: "Segoe Print", "Comic Sans MS";
+}
+
+#desktop .sticky-note .header {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: #F8F7B6;
+    height: 28px;
+}
+
+#desktop .sticky-note .text {
+    position: absolute;
+    top: 80px;
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+}
+
+#desktop .sticky-note .text textarea {
+    height: 100%;
+    width: 100%;
+    font-family: "Segoe Print", "Comic Sans MS";
+    background: none;
+    border: none;
+    outline: 0;
+    resize: none;
+}
+
+#desktop .sticky-note-tip {
+    right: 440px;
+    width: 300px;
+    top: 22px;
+    height: 189px;
+}
+
+#desktop .sticky-note .delete {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: 8px;
+    top: 5px;
+    background: url(Images/windows7/sticky-note-delete.png);
+}
+
+#desktop .sticky-note .delete:hover {
+    background-position: right top;
+}
+
+/* Window Shell Frame */
+#desktop .window {
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+    width: 300px;
+    height: 300px;
+    top: 10px;
+    left: 10px;
+    position: absolute !important;
+    border-radius: 7px;
+    border: 1px solid rgba(0, 0, 0, .5);
+    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, .4), inset 1px 0px 0px rgba(255, 255, 255, .4), inset 0px -1px 0px rgba(255, 255, 255, .4), inset -1px 0px 0px rgba(255, 255, 255, .4), 0px 0px 15px rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .4);
+    background-image: repeating-linear-gradient(65deg, rgba(255, 255, 255, 0) 35%, rgba(255, 255, 255, 0) 40%, rgba(255, 255, 255, 0.1) 42%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.1) 55%, rgba(255, 255, 255, 0) 60%, rgba(255, 255, 255, 0) 75%, rgba(255, 255, 255, 0.1) 90%), linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 21%, rgba(255, 255, 255, .2) 33%, rgba(255, 255, 255, 0) 34%, rgba(255, 255, 255, 0) 100%);
+    background-size: auto, 100% 300px;
+    background-repeat: repeat, no-repeat;
+    min-height: 100px;
+    min-width: 150px;
+    transition: opacity .2s linear, transform .2s linear;
+    animation: open .2s linear;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+#desktop .window-open {
+    min-width: 344px;
+    min-height: 114px;
+}
+
+#desktop .window-maximized {
+    left: -8px !important;
+    top: -2px !important;
+    right: -8px !important;
+    bottom: -8px !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+#desktop .window .header {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    right: 5px;
+    height: 28px;
+}
+
+#desktop .window-hidden {
+    display: none !important;
+}
+
+#desktop .window .window-inner {
+    border: solid 1px #ECE092;
+    border-radius: 6px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/* Window Titlebar Actions */
+#desktop .window .window-actions,
+#desktop .window .window-actions .close-hover,
+#desktop .window .window-actions .maximize-hover,
+#desktop .window .window-actions .minimize-hover,
+#desktop .window .window-actions .close-focus,
+#desktop .window .window-actions .maximize-focus,
+#desktop .window .window-actions .minimize-focus {
+    background: url('window-actions.png');
+    width: 105px;
+    height: 20px;
+    position: absolute;
+    right: -1px;
+    top: -4px;
+}
+
+#desktop .window-maximized .window-actions {
+    right: 9px;
+}
+
+#desktop .window .window-actions .close,
+#desktop .window .window-actions .maximize,
+#desktop .window .window-actions .minimize {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 29px;
+    height: 20px;
+    z-index: 15;
+}
+
+#desktop .window .window-actions .maximize {
+    left: 30px;
+    width: 28px;
+}
+
+#desktop .window .window-actions .close {
+    left: 58px;
+    width: 48px;
+}
+
+#desktop .window .window-actions .close-hover,
+#desktop .window .window-actions .maximize-hover,
+#desktop .window .window-actions .minimize-hover,
+#desktop .window .window-actions .close-focus,
+#desktop .window .window-actions .maximize-focus,
+#desktop .window .window-actions .minimize-focus {
+    right: 0;
+    top: 0;
+    display: none;
+    z-index: 10;
+}
+
+#desktop .window .window-actions .close-focus,
+#desktop .window .window-actions .maximize-focus,
+#desktop .window .window-actions .minimize-focus {
+    z-index: 12;
+}
+
+#desktop .window .window-actions .close-hover { background-position: 0 -20px; }
+#desktop .window .window-actions .close-focus { background-position: 0 -40px; }
+#desktop .window .window-actions .maximize-hover { background-position: 0 -60px; }
+#desktop .window .window-actions .maximize-focus { background-position: 0 -80px; }
+#desktop .window .window-actions .minimize-hover { background-position: 0 -100px; }
+#desktop .window .window-actions .minimize-focus { background-position: 0 -120px; }
+
+#desktop .window-maximized .window-actions { background-position: 0 -140px; }
+#desktop .window-maximized .window-actions .close-hover { background-position: 0 -160px; }
+#desktop .window-maximized .window-actions .close-focus { background-position: 0 -180px; }
+#desktop .window-maximized .window-actions .maximize-hover { background-position: 0 -200px; }
+#desktop .window-maximized .window-actions .maximize-focus { background-position: 0 -220px; }
+#desktop .window-maximized .window-actions .minimize-hover { background-position: 0 -240px; }
+#desktop .window-maximized .window-actions .minimize-focus { background-position: 0 -260px; }
+
+#desktop .window .ui-icon-gripsmall-diagonal-se {
+    background: none;
+}
+
+#desktop .window .content-container {
+    position: absolute;
+    left: 4px;
+    top: 32px;
+    bottom: 4px;
+    right: 4px;
+    border-radius: 1px;
+    border: solid 1px #ECE092;
+}
+
+#desktop .window .content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    border: solid 1px #44402A;
+    border-radius: 1px;
+}
+
+/* ==========================================================================
+   6. Windows Explorer (Verkenner) Components
+   ========================================================================== */
+
+#desktop .Verkenner.window-open {
+    min-width: 500px;
+    min-height: 285px;
+    width: 700px;
+    height: 500px;
+}
+
+#desktop .Verkenner .header {
+    height: 56px;
+}
+
+#desktop .Verkenner .prev-next {
+    position: absolute;
+    left: 2px;
+    top: 26px;
+    width: 67px;
+    height: 27px;
+    background: url(Images/windows7/prev-next.png) no-repeat left top;
+}
+
+#desktop .Verkenner .prev-next .prev,
+#desktop .Verkenner .prev-next .next,
+#desktop .Verkenner .prev-next .recent {
+    width: 29px;
+    height: 27px;
+    float: left;
+}
+
+#desktop .Verkenner .prev-next .recent {
+    width: 9px;
+}
+
+#desktop .Verkenner .search,
+#desktop .Verkenner .browse {
+    position: absolute;
+    right: 1px;
+    top: 27px;
+    height: 22px;
+    border: solid 1px #B5A126;
+    border-color: rgba(181, 161, 38, 0.7);
+    background: #F3EFD3;
+    background: rgba(243, 239, 211, 0.8);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+#desktop .Verkenner .browse {
+    right: 249px;
+    left: 71px;
+}
+
+#desktop .Verkenner .browse .browse-item {
+    float: left;
+    padding: 1px 4px;
+    color: #292826;
+    font-style: normal;
+    height: 18px;
+    line-height: 18px;
+}
+
+#desktop .Verkenner .browse .browse-item:hover {
+    padding: 0 3px;
+    border-left: solid 1px #3C7FB1;
+    border-top: solid 1px #fff;
+    border-bottom: solid 1px #E8F5FC;
+    background: #a6d9f4;
+    background: linear-gradient(to bottom, #eaf6fd 0%,#d7effc 50%,#bde6fd 53%,#a6d9f4 100%);
+    border-right: solid 1px #3C7FB1;
+    color: #232628;
+}
+
+#desktop .Verkenner .search input,
+#desktop .Verkenner .browse .inner {
+    background: #F3EFD3;
+    background: rgba(243, 239, 211, 0.8);
+    border: solid 1px #59563F;
+    border-bottom-color: #B0A76E;
+    border-right-color: #AAA161;
+    border-radius: 2px;
+    font-style: italic;
+    padding: 0 22px 0 7px;
+    line-height: 20px;
+    height: 20px;
+    width: 211px;
+    color: #7C7B77;
+}
+
+#desktop .Verkenner .search:hover input,
+#desktop .Verkenner .browse:hover .inner {
+    background: #FAF6DF;
+    background: rgba(250, 246, 223, 0.8);
+}
+
+#desktop .Verkenner .browse .inner {
+    width: auto;
+    padding-left: 0;
+}
+
+#desktop .Verkenner .search input:focus,
+#desktop .Verkenner .browse:focus {
+    font-style: normal;
+    background: #FFFFFF;
+    color: #000;
+}
+
+#desktop .Verkenner .search input.has-value {
+    font-style: normal;
+    color: #000;
+}
+
+#desktop .Verkenner .content-container {
+    top: 61px;
+}
+
+/* Explorer Toolbar */
+#desktop .Verkenner .toolbar {
+    width: 100%;
+    height: 33px;
+    margin: 1px 0;
+    background: url(Images/windows7/toolbar-bg.png) repeat-x left top;
+    overflow: hidden;
+    color: #1E395B;
+    position: relative;
+}
+
+#desktop .Verkenner .toolbar .toolbar-items {
+    float: left;
+    margin: 0 129px 0 0;
+    padding: 5px 0 4px 3px;
+    overflow: hidden;
+}
+
+#desktop .Verkenner .toolbar-items li {
+    float: left;
+    padding: 0 15px;
+    line-height: 22px;
+    height: 24px;
+    margin: 0 0 4px 0;
+    list-style-type: none;
+}
+
+#desktop .Verkenner .toolbar-items li:hover {
+    background-image: url(Images/windows7/toolbar-item.png), url(Images/windows7/toolbar-item.png);
+    background-position: right bottom, left top;
+}
+
+#desktop .Verkenner .toolbar .toolbar-options {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 132px;
+    padding: 5px 0 4px;
+    margin: 0;
+    overflow: hidden;
+}
+
+#desktop .Verkenner .toolbar .toolbar-options li {
+    width: 28px;
+    height: 24px;
+    margin: 0 4px;
+    padding: 0;
+    float: left;
+    list-style-type: none;
+    background: url(Images/windows7/toolbar-options.png) no-repeat right top;
+}
+
+#desktop .Verkenner .toolbar .toolbar-options li.view {
+    width: 45px;
+    margin-right: 6px;
+}
+
+#desktop .Verkenner .toolbar .toolbar-options li.view-tiles:hover { background-position: right -24px; }
+#desktop .Verkenner .toolbar .toolbar-options li.view-details { background-position: right -48px; }
+#desktop .Verkenner .toolbar .toolbar-options li.view-details:hover { background-position: right -72px; }
+#desktop .Verkenner .toolbar .toolbar-options li.preview-pane { background-position: right -96px; }
+#desktop .window .content .toolbar .toolbar-options li.preview-pane:hover { background-position: right -120px; }
+#desktop .Verkenner .toolbar .toolbar-options li.help { background-position: right -144px; }
+#desktop .Verkenner .toolbar .toolbar-options li.help:hover { background-position: right -168px; }
+
+/* Explorer Panes */
+#desktop .Verkenner .properties-pane {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 53px;
+    background-image: url(Images/windows7/computer-properties-pane.png), url(Images/windows7/computer-properties-pane-bg.png);
+    background-repeat: no-repeat, repeat-x;
+    background-position: left bottom, left top;
+}
+
+#desktop .Verkenner .navigation-pane {
+    position: absolute;
+    left: 0;
+    top: 34px;
+    bottom: 53px;
+    width: 218px;
+    border-right: solid 1px #D6E5F5;
+    overflow-y: auto;
+}
+
+#desktop .Verkenner .navigation-pane .inner {
+    min-height: 330px;
+    width: 100%;
+    background: url(Images/windows7/navigation-pane-bg.png) no-repeat left top;
+}
+
+#desktop .Verkenner .content-pane {
+    position: absolute;
+    left: 218px;
+    right: 0;
+    top: 34px;
+    bottom: 53px;
+    padding-top: 20px;
+    overflow: auto;
+}
+
+#desktop .Verkenner .content-pane h2 {
+    color: #1E3287;
+    font-size: 15px;
+    font-weight: normal;
+    height: 25px;
+    border: solid 1px #fff;
+    border-radius: 2px;
+    cursor: default;
+    position: relative;
+    margin: 0 0 1px 2px;
+}
+
+#desktop .Verkenner .content-pane h2:hover {
+    background: url(Images/windows7/content-title-bg.png) repeat-x left top;
+}
+
+#desktop .Verkenner .content-pane h2 .inner {
+    position: absolute;
+    left: 160px;
+    right: 7px;
+    top: 12px;
+    height: 1px;
+    background: #E2E2E2;
+    z-index: 2;
+}
+
+#desktop .Verkenner .content-pane h2 .text {
+    line-height: 20px;
+    float: left;
+    position: relative;
+}
+
+#desktop .Verkenner .content-pane h2 .toggle-collapse {
+    float: left;
+    list-style-type: circle;
+    width: 14px;
+    height: 25px;
+    margin: 0 3px;
+    background: url(Images/windows7/toggle-collapse.png) no-repeat 3px top;
+    position: relative;
+}
+
+#desktop .Verkenner .content-pane h2 .toggle-collapse:hover {
+    background-position: 3px bottom;
+}
+
+#desktop .Verkenner .content-pane ul {
+    padding: 0 4px 0 15px;
+}
+
+#desktop .Verkenner .content-pane li {
+    line-height: 20px;
+    height: 20px;
+    border: solid 1px #fff;
+    border-radius: 2px;
+    margin-bottom: -1px;
+    z-index: 1;
+    position: relative;
+}
+
+#desktop .Verkenner .content-pane .tile ul {
+    margin-top: 28px;
+    top: -27px;
+    position: relative;
+    z-index: 1;
+}
+
+#desktop .Verkenner .content-pane li .system-icon {
+    margin-right: 2px;
+}
+
+#desktop .Verkenner .content-pane h2:hover,
+#desktop .Verkenner .content-pane li:hover {
+    background: url(Images/windows7/content-title-bg.png) repeat-x left top;
+    border-color: #B8D6FB;
+    z-index: 2;
+}
+
+#desktop .Verkenner .content-pane li:hover {
+    background: url(Images/windows7/content-item-bg.png) repeat-x left top;
+}
+
+#desktop .Verkenner .content-pane .tile-active h2,
+#desktop .Verkenner .content-pane .tile-active li {
+    border-color: #84ACDD;
+    z-index: 2;
+}
+
+#desktop .Verkenner .content-pane .tile-active li {
+    background: url(Images/windows7/content-item-bg.png) repeat-x left -20px;
+}
+
+#desktop .Verkenner .content-pane .tile-active li:hover,
+#desktop .Verkenner .content-pane li.active {
+    background: url(Images/windows7/content-item-bg.png) repeat-x left bottom;
+    border-color: #7DA2CE;
+    z-index: 2;
+}
+
+#desktop .Verkenner .content-pane li.active {
+    z-index: 3;
+}
+
+#desktop .Verkenner .content-pane li input {
+    position: absolute;
+    left: 18px;
+    top: 0;
+    height: 18px;
+    line-height: 18px;
+    background: #fff;
+    padding: 0 15px 0 3px;
+    width: 150px;
+    border: solid 1px #000;
+    cursor: text;
+}
+
+.error-window {
+  width: 300px;
+  background-color: #ececec;
+  border: 1px solid #888;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  font-family: "Segoe UI", sans-serif;
+  z-index: 9999;
+}
+
+.error-content {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+
+.error-icon {
+  width: 48px;
+  height: 48px;
+  margin-right: 10px;
+}
+
+.error-message {
+  font-size: 14px;
+  color: #000;
+}
+
+.error-buttons {
+  text-align: right;
+  padding: 10px;
+}
+
+.error-buttons .ok-btn {
+  background-color: #d6d6d6;
+  border: 1px solid #999;
+  padding: 4px 12px;
+  cursor: pointer;
+}
+.error-buttons .ok-btn:hover {
+  background-color: #eaeaea;
+}
